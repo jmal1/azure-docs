@@ -127,9 +127,10 @@ To set up a managed identity in the portal, you first create an application and 
                     var settings = config.Build();
                     config.AddAzureAppConfiguration(options =>
                         options.Connect(new Uri(settings["AppConfig:Endpoint"]), new ManagedIdentityCredential()));
-                });
-            })
-            .UseStartup<Startup>());
+                })
+                .UseStartup<Startup>();
+            });
+            
     ```
     ---
 
@@ -177,9 +178,9 @@ To set up a managed identity in the portal, you first create an application and 
                                    kv.SetCredential(credentials);
                                });
                     });
-                });
-            })
-            .UseStartup<Startup>());
+                })
+                .UseStartup<Startup>();
+            });
     ```
     ---
 
@@ -236,6 +237,12 @@ git push azure main
 ```
 
 You might see runtime-specific automation in the output, such as MSBuild for ASP.NET, `npm install` for Node.js, and `pip install` for Python.
+
+> [!IMPORTANT]
+> If you receive an error, verify that the branch is correct with `git branch -a`.
+
+> [!TIP]
+> If prompted for your Windows login information, close the authentication window to continue. You can then enter your User Deployment credentials in the CLI.
 
 ### Browse to the Azure web app
 
